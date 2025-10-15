@@ -9,4 +9,4 @@ class Cabina_Deluxe(Cabina):
         self.prezzo = int(self.prezzo) * 1.20
 
     def __str__(self):
-        return f'{self.codCabina} | {self.numLetti} letti - ponte {self.ponte} - prezzo {self.prezzo} euro - stile {self.stile}|'
+        return f'{self.codCabina}: Deluxe | {self.numLetti} letti - ponte {self.ponte} - prezzo {self.prezzo} euro - stile {self.stile}|'

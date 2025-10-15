@@ -15,30 +15,33 @@ class Crociera:
 
     def carica_file_dati(self, file_path):
         """Carica i dati (cabine e passeggeri) dal file"""
-        infile= open(file_path,'r', encoding='utf-8')
-        for riga in infile:
-            riga = riga.strip('\n').split(',')
+        try:
+            infile= open(file_path,'r', encoding='utf-8')
+            for riga in infile:
+                riga = riga.strip('\n').split(',')
 
-            #Verifico se si tratta di Cabine (semplici, Animali, Deluxe) o Passeggeri e inizializzo gli oggetti
-            if len(riga) == 3:
-                codPasseggero, nomePasseggero, cognomePasseggero = riga
-                passeggero= Passeggero(codPasseggero ,nomePasseggero, cognomePasseggero)
-                self.lista_passeggeri.append(passeggero)
-            elif len(riga)== 4:
-                codCabina, numLetti, ponte, prezzo = riga
-                cabina= Cabina(codCabina, numLetti, ponte, prezzo)
-                self.lista_cabine.append(cabina)
-            elif riga[4].isnumeric():
-                codCabina, numLetti, ponte, prezzo, max_animali= riga
-                cabina_animali= CabinaAnimali(codCabina, numLetti, ponte, prezzo, max_animali)
-                cabina_animali.nuovo_prezzo()
-                self.lista_cabine.append(cabina_animali)
+                #Verifico se si tratta di Cabine (semplici, Animali, Deluxe) o Passeggeri e inizializzo gli oggetti
+                if len(riga) == 3:
+                    codPasseggero, nomePasseggero, cognomePasseggero = riga
+                    passeggero= Passeggero(codPasseggero ,nomePasseggero, cognomePasseggero)
+                    self.lista_passeggeri.append(passeggero)
+                elif len(riga)== 4:
+                    codCabina, numLetti, ponte, prezzo = riga
+                    cabina= Cabina(codCabina, numLetti, ponte, prezzo)
+                    self.lista_cabine.append(cabina)
+                elif riga[4].isnumeric():
+                    codCabina, numLetti, ponte, prezzo, max_animali= riga
+                    cabina_animali= CabinaAnimali(codCabina, numLetti, ponte, prezzo, max_animali)
+                    cabina_animali.nuovo_prezzo()
+                    self.lista_cabine.append(cabina_animali)
 
-            elif riga[4].isalpha():
-                codCabina, numLetti, ponte, prezzo, stile = riga
-                cabina_deluxe = Cabina_Deluxe(codCabina, numLetti, ponte, prezzo, stile)
-                cabina_deluxe.nuovo_prezzo()
-                self.lista_cabine.append(cabina_deluxe)
+                elif riga[4].isalpha():
+                    codCabina, numLetti, ponte, prezzo, stile = riga
+                    cabina_deluxe = Cabina_Deluxe(codCabina, numLetti, ponte, prezzo, stile)
+                    cabina_deluxe.nuovo_prezzo()
+                    self.lista_cabine.append(cabina_deluxe)
+        except FileNotFoundError:
+            raise FileNotFoundError("File non trovato.")
 
     def trova_passeggero(self, codp):
         for passeggero in self.lista_passeggeri:

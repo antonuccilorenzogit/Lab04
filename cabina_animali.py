@@ -10,5 +10,5 @@ class CabinaAnimali(Cabina):
 
 
     def __str__(self):
-        return f'{self.codCabina} | {self.numLetti} letti - ponte {self.ponte} - prezzo {self.prezzo} euro - max_animali {self.max_animali}|'
+        return f'{self.codCabina}: Animali | {self.numLetti} letti - ponte {self.ponte} - prezzo {self.prezzo} euro - max_animali {self.max_animali}|'
 

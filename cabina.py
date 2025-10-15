@@ -12,7 +12,7 @@ class Cabina:
         self.occupata = True
 
     def __str__(self):
-        return f'{self.codCabina} | {self.numLetti} letti - ponte {self.ponte} - prezzo {self.prezzo} euro|'
+        return f'{self.codCabina}: Standard | {self.numLetti} letti - ponte {self.ponte} - prezzo {self.prezzo} euro|'
     def __eq__(self, other):
         if isinstance(other, str):
             return self.codCabina == other
